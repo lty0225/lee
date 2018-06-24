@@ -1,0 +1,15 @@
+<% include header.ejs %>
+<h3>회원가입</h3>
+<form method='post' action='/ids' >
+<ul >
+	<li> 아이디  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='id'> </li>
+	<li> 비번  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='password'> </li>
+	<li> 이름  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='name'> </li>
+	<li> 생년월일  :&nbsp;&nbsp;&nbsp;&nbsp; <input type='number' name='birth'> ex)19930225 </li>
+	<li> 핸드폰  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='phone'> ex)010-1234-5678</li> 
+    <li> 사진  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' name='picture'> </li>
+    <br><input type='submit' value='가입하기'>
+</ul>	
+
+</form>
+<% include footer.ejs %>

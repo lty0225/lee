@@ -1,0 +1,117 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+           console.log('ready!');
+        });
+        var sess=sess.userid;
+        document.body.style.backgroundColor = "#000000";//000000으로 나중에
+
+        function mdDelete(title) {//검색
+         var title1=title;
+         $.ajax({
+            url: '/mds',
+            type: 'delete',
+            data: `title=${title1}`
+         }).done((data) => {
+                 alert("삭제완료");
+                 location.reload();            
+         }).fail((err) => {
+            //실패          
+            alert("실패");  
+         });
+        }
+
+        function mdEdit(title) {//검색
+         var title1=title;
+         $.ajax({
+            url: '/mdEditForm',
+            type: 'get',
+            data: `title=${title1}`
+         }).done((data) => {
+            //성공
+         }).fail((err) => {
+            //실패          
+            alert("실패");  
+         });
+        }
+        function login() {//로그인
+           var id = $("#userId").val();
+           var pw = $("#userPw").val();
+           $("#login-result").text(id);
+           $.ajax({
+              url: '/login',
+              type: 'put',
+              data: `id=${id}&password=${pw}`
+           }).done((data) => {
+              // 로그인 성공
+              alert('로그인 성공');
+              $("#loginButton").hide();
+                $("#joinButton").hide();
+                $("#logoutButton").show();
+           }).fail((err) => {
+              // 로그인 실패            
+              alert('로그인 실패(아이디, 비밀번호을 다시 입력해주세요)');
+              $("#loginButton").show();
+                $("#joinButton").show();
+                $("#logoutButton").hide();
+           });
+        }
+
+        function searchf() {//검색
+         var searchTitle = $("#search").val();     
+         $.ajax({
+            url: '/search',
+            type: 'get',
+            data: `title=${searchTitle}`
+         }).done((data) => {
+                 console.log('안되냐');
+                 //alert(data.count);
+            //성공
+         }).fail((err) => {
+            //실패            
+         });
+        }
+        function logout() {
+           $.ajax({
+              url: '/logout',
+              type: 'delete'
+           }).done((data) => {
+              // 로그아웃 성공
+              $("#login-result").text("로그아웃 성공");
+              $("#loginButton").show();
+              $("#joinButton").show();
+                $("#logoutButton").hide();
+           }).fail((err) => {
+              // 로그아웃 실패            
+              $("#login-result").text("로그아웃 실패");
+           });
+        }        
+   
+        /*function getCookie(name){
+        var value = document.cookie.match('(^|;) ?' + cookieid + '=([^;]*)(;|$)');
+        return value? value[2] : null;
+        }*//*
+        function cookieTest(){
+                var validd;
+                if(getCookie("cookieId")){
+                        validd=1;
+                        consolg.log(cookieId);
+                }else{
+                        validd=2;
+                }
+        }*/
+
+        //즐겨찾기 추가
+        function bookmarksite(title,url) { // Internet Explorer 
+        if(document.all) { window.external.AddFavorite(url, title); } // Google Chrome 
+        else if(window.chrome){ alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다."); } // Firefox 
+        else if (window.sidebar) // firefox 
+        { window.sidebar.addPanel(title, url, ""); } // Opera 
+        else if(window.opera && window.print) { // opera 
+        var elem = document.createElement('a'); 
+        elem.setAttribute('href',url); 
+        elem.setAttribute('title',title); 
+        elem.setAttribute('rel','sidebar'); 
+        elem.click(); } } 
+</script>
+</body>
+</html>

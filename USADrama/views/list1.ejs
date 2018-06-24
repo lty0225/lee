@@ -1,0 +1,90 @@
+<% include header.ejs %>
+
+    <div class="container">
+            <h1>리스트111</h1>    <a href="form">추가하기</a>
+            <br>
+            <br>
+           
+            <table class="alllist" border="1" style="margin-left: auto; margin-right: auto;">
+            <thead>
+            <tr>
+                <select name="box">
+                <option value="1">제목</option>
+                <option value="1">시즌</option>
+                <option value="1">년도</option>
+                <option value="1">장르</option>                            
+                </select>
+                <input type="text" id="search" placeholder="검색어">
+                <input type="button" onclick="searchf()" value="검색"></div>
+            <center>
+            <th>사진</th>
+            <th>제목</th>
+            <th>시즌</th>
+            <th>년도</th>
+            <th>장르</th>
+            <th>배우</th>
+            <th>줄거리</th>
+            <th>수정</th>
+            <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            <% data.forEach(function (item){ %>
+            <tr>
+            <td>
+                <center><img src="images/md/<%= item.picture %>" height="70px"></center>
+            </td>
+            <td>
+            <%= item.title %>
+            </td>
+            <td>
+                    <center><a href='/detail/<%= item.id %>'><%= item.season %></a></center>
+            </td>
+            <td>
+                    <center><%= item.year %></center>
+            </td>
+            <td>
+            <%= item.genre %>
+            </td>
+            <td>
+                <%= item.actor %>
+            </td>
+            <td>
+                    <%item.summary.length%>
+                <%  if(item.summary.length>35){
+                    var dd=item.summary.substring(0, 35);%>
+                    <%=dd%>...
+                <%}else{%>
+                    <%=item.summary%>
+                <%}%>
+            </td>
+            <td>
+            <a href="/delete/<%= item.id %>">삭제</a>
+            </td>
+            <td>
+            <a href="/edit/<%= item.id %>">수정</a>
+            </td>
+            </tr>
+            <% })%>
+            </tbody>
+            </table></center>
+            </div>
+
+    <script>
+        function searchf() {
+         var searchTitle = $("#search").val();         
+         $.ajax({
+            url: '/search',
+            type: 'post',
+            data: `title=${searchTitle}`
+         }).done((data) => {
+            //성공
+         }).fail((err) => {
+            //실패            
+         });
+      }
+    </script>
+
+
+<% include footer.ejs %>

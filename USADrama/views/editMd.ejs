@@ -1,0 +1,21 @@
+<% include header.ejs %>
+
+<h3>미드 추가</h3>
+<form method='post' action='/mds' >
+<ul>
+	<li> 제목 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='title' > </li>
+	<li> 연도 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='number' name='year'> </li>
+	<li> 채널 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='channel'> </li>
+	<li> 장르 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='genre'> </li>
+	<li> 등급 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='age'> </li>
+	<li> 배우 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='actor'> </li>
+	<li> 줄거리 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='summary'> </li>
+	<li> 최근 시즌 : &nbsp;&nbsp;&nbsp;<input type='number' name='season'> </li>
+	<li> 관련 사이트 : <input type='text' name='website'> </li>
+	<li> 사진 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='picture'> </li>
+	<br><input type='submit' value='추가하기'>
+</ul>	
+
+</form>
+
+<% include footer.ejs %>

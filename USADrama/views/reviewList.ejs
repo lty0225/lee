@@ -1,0 +1,80 @@
+<% include header.ejs %>
+
+<script type="text/javascript">
+function getQuerystring(key, default_)
+        {
+  if (default_==null) default_=""; 
+  key = key.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regex = new RegExp("[\\?&]"+key+"=([^&#]*)");
+  var qs = regex.exec(window.location.href);
+  if(qs == null)
+    return default_;
+  else
+    return qs[1];
+}  
+    var title1 = getQuerystring('title');
+</script>  
+<div id="please"></div>
+    <div class="container">
+            <% var hap=0, num=0, avg=0;
+            if(!data){}
+            else{data.forEach(function (item){ 
+                hap=hap+item.grade;
+                num=num+1;
+            })
+            avg=hap/num;
+            avg=avg.toFixed(1);}
+            %>
+            <h1><center><script>document.write(title1);</script> 리뷰(평점:<%if(isNaN(avg)){}else{%><%=avg%><%}%>)</h1></center>    
+            <br>
+            <br>
+            <% data.forEach(function (item){ %>
+            <form method='post' action='/review?title=<%=item.title%>' ><% })%>
+                <ul >
+                    
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;리뷰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp;&nbsp; <input type='text' name='reviews'> </li>
+                    <li> &nbsp;&nbsp;&nbsp;&nbsp;평점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp;&nbsp; <input type='text' name='grade'>&nbsp;(1~5) </li>
+                    <br><center><input type='submit' value='작성하기'></center>
+                </ul>	
+                
+            </form>
+
+            <table class="alllist" border="1" style="margin-left: auto; margin-right: auto;">
+            <thead>
+            <tr>
+                <center>
+                <br>
+            <th>번호</th>
+            <th>날짜</th>
+            <th>리뷰</th>
+            <th>점수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% var i=0;%>
+            <% data.forEach(function (item){ %>
+            <tr>            <% i=i+1;%>
+            <td>
+                <center><%=i %></center>
+            </td>
+            <td>
+                <%= item.date %>
+            </td>
+            <td>
+                <%= item.reviews %>
+            </td>
+            <td><center>
+                <%=item.grade%>
+            </center></td>
+            </tr>
+            <% })%>
+            </tbody>
+            </table></center>
+            </div>
+
+    <script>
+       
+    </script>
+
+
+<% include footer.ejs %>
